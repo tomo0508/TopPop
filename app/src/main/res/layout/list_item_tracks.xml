@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:id="@+id/list_item_position"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerInParent="true"
+        android:textAppearance="@style/TextBigStyle"
+        android:layout_marginLeft="@dimen/view_spacing_medium"
+        android:minWidth="45dp"
+        android:padding="1dp"
+        />
+
+    <TextView
+        android:id="@+id/list_item_song"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextViewStyle"
+        android:layout_marginTop="@dimen/view_spacing_medium"
+        android:layout_toEndOf="@id/list_item_position"
+        android:layout_marginLeft="@dimen/view_spacing_medium"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/list_item_artist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextSubViewStyle"
+        android:layout_below="@id/list_item_song"
+        android:layout_toEndOf="@id/list_item_position"
+        android:layout_marginLeft="@dimen/view_spacing_medium"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/list_item_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextSubViewStyle"
+        android:layout_below="@id/list_item_artist"
+        android:layout_marginBottom="@dimen/view_spacing_medium"
+        android:layout_marginLeft="@dimen/view_spacing_medium"
+        android:layout_toEndOf="@id/list_item_position"
+        android:padding="1dp" />
+
+</RelativeLayout>
+

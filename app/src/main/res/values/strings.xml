@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Top Pop</string>
+    <string name="order_normal">Normal</string>
+    <string name="order_asc">Asc</string>
+    <string name="order_desc">Desc</string>
+
+    <string name="dialog_title">Internet</string>
+    <string name="dialog_message">There is no Internet connection.\nCheck your Internet connection and try again.</string>
+    <string name="dialog_ok">OK</string>
+
+
+    <string name="song_name">Song:</string>
+    <string name="artist_name">Artist:</string>
+    <string name="album_name">Album:</string>
+
+    <string name="song_list">%1$d. %2$s \n</string>
+
+</resources>

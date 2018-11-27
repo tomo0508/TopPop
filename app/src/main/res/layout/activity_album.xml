@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AlbumActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/view_spacing_extra_small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextSubViewStyle"
+                android:layout_gravity="center"
+                android:text="@string/song_name" />
+
+            <TextView
+                android:id="@+id/tv_songName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextViewStyle"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/view_spacing_extra_small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextSubViewStyle"
+                android:text="@string/artist_name" />
+
+            <TextView
+                android:id="@+id/tv_artistName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextViewStyle"
+                android:layout_marginLeft="5dp"
+                />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/colorAccent"
+            android:minWidth="50dp"
+            android:minHeight="50dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/view_spacing_extra_small"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextSubViewStyle"
+                android:text="@string/album_name" />
+
+            <TextView
+                android:id="@+id/tv_albumName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextViewStyle"
+                android:layout_marginLeft="5dp" />
+
+        </LinearLayout>
+        <View
+            android:id="@+id/view_line_divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/view_spacing_small"
+            android:background="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/tv_albumSongs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:lineSpacingExtra="@dimen/view_spacing_extra_small"
+            android:textAppearance="@style/TextViewStyleList"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/view_spacing_small"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+</ScrollView>

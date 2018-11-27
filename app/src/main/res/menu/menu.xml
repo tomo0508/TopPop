@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_normal"
+        android:title="@string/order_normal"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_asc"
+        android:title="@string/order_asc"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/item_desc"
+        android:title="@string/order_desc"
+        app:showAsAction="never" />
+
+</menu>
