@@ -12,17 +12,17 @@ import java.util.List;
 
 import tjuri.example.com.toppop.AlbumActivity;
 import tjuri.example.com.toppop.R;
-import tjuri.example.com.toppop.model.chart.Datum;
+import tjuri.example.com.toppop.model.chart.Track;
 
 
 public class DeezerAdapter extends RecyclerView.Adapter<DeezerAdapterViewHolder> {
 
 
-    private List<Datum> tracks;
+    private List<Track> tracks;
     private Context context;
 
 
-    public DeezerAdapter(List<Datum> tracks, Context context) {
+    public DeezerAdapter(List<Track> tracks, Context context) {
         this.tracks = tracks;
         this.context = context;
     }
@@ -68,11 +68,10 @@ public class DeezerAdapter extends RecyclerView.Adapter<DeezerAdapterViewHolder>
 
     @Override
     public int getItemCount() {
-        if (tracks != null) {
-            return tracks.size();
-        }
 
-        return -1;
+            return tracks.size();
+
+
     }
 
 

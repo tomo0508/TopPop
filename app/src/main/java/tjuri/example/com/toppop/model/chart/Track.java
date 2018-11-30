@@ -4,7 +4,7 @@ package tjuri.example.com.toppop.model.chart;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum{
+public class Track{
 
     @SerializedName("id")
     @Expose
@@ -29,17 +29,17 @@ public class Datum{
         return title;
     }
 
-    public int orderNormal(Datum o) {
+    public int orderNormal(Track o) {
         int i = this.position.compareTo(o.position);
         return i;
     }
 
-    public int orderAsc(Datum o) {
+    public int orderAsc(Track o) {
         int i = this.duration.compareTo(o.duration);
         return i;
     }
 
-    public int orderDesc(Datum o) {
+    public int orderDesc(Track o) {
         int i = this.duration.compareTo(o.duration);
         return -i;
     }

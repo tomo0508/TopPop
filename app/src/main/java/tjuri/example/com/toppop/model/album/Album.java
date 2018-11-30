@@ -3,7 +3,7 @@ package tjuri.example.com.toppop.model.album;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Datum_ {
+public class Album {
 
     @SerializedName("id")
     @Expose

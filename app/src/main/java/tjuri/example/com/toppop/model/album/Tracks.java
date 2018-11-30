@@ -9,9 +9,9 @@ public class Tracks {
 
     @SerializedName("data")
     @Expose
-    private List<Datum_> data = null;
+    private List<Album> data = null;
 
-    public List<Datum_> getData() {
+    public List<Album> getData() {
         return data;
     }
 

@@ -28,7 +28,7 @@ import retrofit2.Response;
 import tjuri.example.com.toppop.adapter.DeezerAdapter;
 import tjuri.example.com.toppop.api.ApiClient;
 import tjuri.example.com.toppop.api.ApiClientInterface;
-import tjuri.example.com.toppop.model.chart.Datum;
+import tjuri.example.com.toppop.model.chart.Track;
 import tjuri.example.com.toppop.model.chart.TrackDetailsModel;
 import tjuri.example.com.toppop.ui.NetworkChangeReceiver;
 import tjuri.example.com.toppop.ui.NoInternetDialog;
@@ -37,7 +37,7 @@ import tjuri.example.com.toppop.ui.ServiceManager;
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
 
-    private List<Datum> tracks;
+    private List<Track> tracks;
     @BindView(R.id.rv_chart)
     RecyclerView recyclerView;
     @BindView(R.id.swipe_container)
@@ -141,15 +141,15 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         int id = item.getItemId();
 
         if (id == R.id.item_normal) {
-            Collections.sort(tracks, Datum::orderNormal);
+            Collections.sort(tracks, Track::orderNormal);
             adapterSet(tracks);
             return true;
         } else if (id == R.id.item_asc) {
-            Collections.sort(tracks, Datum::orderAsc);
+            Collections.sort(tracks, Track::orderAsc);
             adapterSet(tracks);
             return true;
         } else if (id == R.id.item_desc) {
-            Collections.sort(tracks, Datum::orderDesc);
+            Collections.sort(tracks, Track::orderDesc);
             adapterSet(tracks);
             return true;
         }
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     }
 
-    private void adapterSet(List<Datum> list) {
+    private void adapterSet(List<Track> list) {
         DeezerAdapter dAdapter;
         dAdapter = new DeezerAdapter(list, this);
         recyclerView.setAdapter(dAdapter);

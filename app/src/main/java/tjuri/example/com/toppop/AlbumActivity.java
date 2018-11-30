@@ -21,11 +21,11 @@ import retrofit2.Response;
 import tjuri.example.com.toppop.api.ApiClient;
 import tjuri.example.com.toppop.api.ApiClientInterface;
 import tjuri.example.com.toppop.model.album.AlbumDetailModel;
-import tjuri.example.com.toppop.model.album.Datum_;
+import tjuri.example.com.toppop.model.album.Album;
 
 public class AlbumActivity extends AppCompatActivity {
 
-    private List<Datum_> albumSongs;
+    private List<Album> albumSongs;
     private int albumId;
     private String song;
     private String artist;
