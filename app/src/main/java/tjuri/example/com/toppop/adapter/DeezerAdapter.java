@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.List;
-import java.util.Locale;
 
 import tjuri.example.com.toppop.AlbumActivity;
 import tjuri.example.com.toppop.R;
@@ -20,13 +19,11 @@ public class DeezerAdapter extends RecyclerView.Adapter<DeezerAdapterViewHolder>
 
 
     private List<Datum> tracks;
-    private int rowLayout;
     private Context context;
 
 
-    public DeezerAdapter(List<Datum> tracks, int rowLayout, Context context) {
+    public DeezerAdapter(List<Datum> tracks, Context context) {
         this.tracks = tracks;
-        this.rowLayout = rowLayout;
         this.context = context;
     }
 

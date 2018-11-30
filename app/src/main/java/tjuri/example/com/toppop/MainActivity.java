@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
 
     private List<Datum> tracks;
-    private List<Datum> orderNormal;
+    //private List<Datum> orderNormal;
     @BindView(R.id.rv_chart)
     RecyclerView recyclerView;
     @BindView(R.id.swipe_container)
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(Call<TrackDetailsModel> call, Response<TrackDetailsModel> response) {
                 if (response.isSuccessful()) {
                     tracks = response.body().getTracks().getData();
-                    orderNormal = new ArrayList<>(tracks);
+                    //orderNormal = new ArrayList<>(tracks);
                     adapterSet(tracks);
                     swipeContainer.setRefreshing(false);
                 }
@@ -122,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,
                 DividerItemDecoration.VERTICAL));
+        recyclerView.setHasFixedSize(true);
 
     }
 
@@ -137,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         int id = item.getItemId();
 
         if (id == R.id.item_normal) {
-            adapterSet(orderNormal);
+            Collections.sort(tracks, Datum::orderNormal);
+            adapterSet(tracks);
             return true;
         } else if (id == R.id.item_asc) {
             Collections.sort(tracks, Datum::orderAsc);
@@ -155,7 +157,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
     private void adapterSet(List<Datum> list) {
         DeezerAdapter dAdapter;
-        dAdapter = new DeezerAdapter(list, 0, this);
+        dAdapter = new DeezerAdapter(list, this);
         recyclerView.setAdapter(dAdapter);
     }
 

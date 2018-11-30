@@ -29,6 +29,11 @@ public class Datum{
         return title;
     }
 
+    public int orderNormal(Datum o) {
+        int i = this.position.compareTo(o.position);
+        return i;
+    }
+
     public int orderAsc(Datum o) {
         int i = this.duration.compareTo(o.duration);
         return i;

@@ -135,6 +135,7 @@ public class AlbumActivity extends AppCompatActivity {
             }
 
         });
+
     }
 
     public void visibleWidgets() {
