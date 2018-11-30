@@ -19,6 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".AlbumActivity"></activity>
+
+        <receiver android:name=".ui.NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

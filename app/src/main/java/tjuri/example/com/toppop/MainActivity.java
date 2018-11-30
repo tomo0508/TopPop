@@ -1,8 +1,11 @@
 package tjuri.example.com.toppop;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,13 +30,14 @@ import tjuri.example.com.toppop.api.ApiClient;
 import tjuri.example.com.toppop.api.ApiClientInterface;
 import tjuri.example.com.toppop.model.chart.Datum;
 import tjuri.example.com.toppop.model.chart.TrackDetailsModel;
+import tjuri.example.com.toppop.ui.NetworkChangeReceiver;
 import tjuri.example.com.toppop.ui.NoInternetDialog;
+import tjuri.example.com.toppop.ui.ServiceManager;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private List<Datum> tracks;
-    //private List<Datum> orderNormal;
     @BindView(R.id.rv_chart)
     RecyclerView recyclerView;
     @BindView(R.id.swipe_container)
@@ -46,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         setContentView(R.layout.activity_main);
         initLayout();
 
-        if (!isOnline()) {
-            NoInternetDialog noInternet = new NoInternetDialog();
+        NoInternetDialog noInternet = new NoInternetDialog();
+
+        ServiceManager serviceManager = new ServiceManager(this);
+        if (!serviceManager.isNetworkAvailable())
+
             noInternet.show(getSupportFragmentManager(), "No Internet");
 
-        }
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(R.color.colorPrimary,
@@ -78,11 +84,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isOnline()) {
-            Toast.makeText(this, "No Internet. List can't be refreshed.", Toast.LENGTH_LONG).show();
 
-        } else
-            onRefresh();
+        NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver();
+        networkChangeReceiver.onReceive(this, getIntent());
 
     }
 
@@ -101,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onResponse(Call<TrackDetailsModel> call, Response<TrackDetailsModel> response) {
                 if (response.isSuccessful()) {
                     tracks = response.body().getTracks().getData();
-                    //orderNormal = new ArrayList<>(tracks);
                     adapterSet(tracks);
                     swipeContainer.setRefreshing(false);
                 }
@@ -159,13 +162,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         DeezerAdapter dAdapter;
         dAdapter = new DeezerAdapter(list, this);
         recyclerView.setAdapter(dAdapter);
-    }
-
-    private boolean isOnline() {
-        ConnectivityManager conMgr = (ConnectivityManager)
-                getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = conMgr.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnected() && netInfo.isAvailable();
     }
 
 
