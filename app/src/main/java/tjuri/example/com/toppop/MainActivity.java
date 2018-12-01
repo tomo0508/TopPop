@@ -1,11 +1,5 @@
 package tjuri.example.com.toppop;
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
-import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -43,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
 
+    private NetworkChangeReceiver networkChangeReceiver=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
             noInternet.show(getSupportFragmentManager(), "No Internet");
 
+
+        networkChangeReceiver = new NetworkChangeReceiver();
+        networkChangeReceiver.onReceive(this, getIntent());
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(R.color.colorPrimary,
@@ -84,12 +82,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onResume() {
         super.onResume();
-
-        NetworkChangeReceiver networkChangeReceiver = new NetworkChangeReceiver();
-        networkChangeReceiver.onReceive(this, getIntent());
-
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if(networkChangeReceiver!=null){
+            unregisterReceiver(networkChangeReceiver);
+        }
+    }
 
     private void loadRecyclerViewData() {
 
