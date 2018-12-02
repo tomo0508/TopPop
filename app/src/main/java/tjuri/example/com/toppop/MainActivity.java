@@ -1,5 +1,6 @@
 package tjuri.example.com.toppop;
 
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @BindView(R.id.swipe_container)
     SwipeRefreshLayout swipeContainer;
 
-    private NetworkChangeReceiver networkChangeReceiver=null;
+    private NetworkChangeReceiver networkChangeReceiver = null;
 
 
     @Override
@@ -49,12 +50,11 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
 
         ServiceManager serviceManager = new ServiceManager(this);
         if (!serviceManager.isNetworkAvailable())
-
             noInternet.show(getSupportFragmentManager(), "No Internet");
-
 
         networkChangeReceiver = new NetworkChangeReceiver();
         networkChangeReceiver.onReceive(this, getIntent());
+
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(R.color.colorPrimary,
@@ -84,13 +84,19 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         super.onResume();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
-        if(networkChangeReceiver!=null){
-            unregisterReceiver(networkChangeReceiver);
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(networkChangeReceiver);
+       /* try {
+            if (networkChangeReceiver != null) {
+                unregisterReceiver(networkChangeReceiver);
+            }
+        } catch (IllegalArgumentException ex) {
+
+        }*/
+
     }
 
     private void loadRecyclerViewData() {

@@ -16,11 +16,7 @@ public class NetworkChangeReceiver extends BroadcastReceiver {
         else
             Toast.makeText(context, "No Internet", Toast.LENGTH_LONG).show();
 
-
     }
-
-
-
 
     boolean isOnline(Context context) {
         ServiceManager serviceManager = new ServiceManager(context);
