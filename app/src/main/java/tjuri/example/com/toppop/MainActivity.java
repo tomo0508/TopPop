@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         if (!serviceManager.isNetworkAvailable())
             noInternet.show(getSupportFragmentManager(), "No Internet");
 
-        networkChangeReceiver = new NetworkChangeReceiver();
-        networkChangeReceiver.onReceive(this, getIntent());
-
 
         swipeContainer.setOnRefreshListener(this);
         swipeContainer.setColorSchemeResources(R.color.colorPrimary,
@@ -82,21 +79,16 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     @Override
     protected void onResume() {
         super.onResume();
+        networkChangeReceiver = new NetworkChangeReceiver();
+        networkChangeReceiver.onReceive(this, getIntent());
     }
 
 
     @Override
     protected void onPause() {
         super.onPause();
+
         LocalBroadcastManager.getInstance(this).unregisterReceiver(networkChangeReceiver);
-       /* try {
-            if (networkChangeReceiver != null) {
-                unregisterReceiver(networkChangeReceiver);
-            }
-        } catch (IllegalArgumentException ex) {
-
-        }*/
-
     }
 
     private void loadRecyclerViewData() {
